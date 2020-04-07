@@ -9,25 +9,25 @@ namespace Task3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class TrainingController : ControllerBase
     {
-        private readonly ICustomerRepository _customer;
+        private readonly ITrainingRepository _customer;
         private readonly IMapper _mapper;
-        public CustomerController(ICustomerRepository customer,IMapper mapper)
+        public TrainingController(ITrainingRepository customer,IMapper mapper)
         {
             _customer = customer;
             _mapper = mapper;
         }
 
         [HttpPost("[action]")]
-        public IActionResult create(CustomerModel customerModel)
+        public IActionResult AddTraining(TrainingModel customerModel)
         {
             try
             {
                 if(!ModelState.IsValid)
                     return BadRequest(ModelState.Values);
 
-                if (_customer.AddCustomer(_mapper.Map<Customer>(customerModel)))
+                if (_customer.AddTraining(_mapper.Map<TrainingEntity>(customerModel)))
                     return Ok("Data submitted successfully. Date difference is " 
                         + Math.Round((customerModel.EndDate - customerModel.StartDate).TotalDays));
                 else

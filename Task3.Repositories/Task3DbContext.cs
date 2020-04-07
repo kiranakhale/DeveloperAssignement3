@@ -11,6 +11,6 @@ namespace Task3.Repositories
         public Task3DbContext(DbContextOptions<Task3DbContext> options) : base(options)
         { }
 
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<TrainingEntity> Training { get; set; }
     }
 }

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Customer } from '../models/customer';
-import { ApiService } from '../api.service';
+import { Training } from '../models/training';
+import { ApiTrainingService } from '../api.training';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [ApiService]
+  providers: [ApiTrainingService]
 })
 export class HomeComponent implements OnInit{
   startDate;
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit{
   staticAlertClosed = false;
   successMessage = '';
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiTrainingService) { }
 
   ngOnInit(): void {
     setTimeout(() => this.staticAlertClosed = true, 20000);
@@ -50,12 +50,12 @@ export class HomeComponent implements OnInit{
     console.log(fData);
     var eDate = new Date(fData.dp2.year, fData.dp2.month, fData.dp2.day);
     var sDate = new Date(fData.dp1.year, fData.dp1.month, fData.dp1.day);
-    var customer: Customer = {
-      Name : fData.name,
+    var customer: Training = {
+      TrainingName : fData.name,
       EndDate : eDate,
       StartDate : sDate
     };
-    this.apiService.createTraining(customer).subscribe((res) => {
+    this.apiService.addTraining(customer).subscribe((res) => {
       this._success.next(res);
       form.reset();
     });

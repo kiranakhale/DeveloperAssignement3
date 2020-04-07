@@ -1,20 +1,22 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Task3.Repositories.Entities
 {
     /// <summary>
-    /// Represents the Customer Entity Class
+    /// Represents the Training Entity Class
     /// </summary>
-    public class Customer
+    public class TrainingEntity
     {
+        [Key]
         /// <summary>
-        /// Gets or sets the CustomerId.
+        /// Gets or sets the TrainingId.
         /// </summary>
-        public int CustomerId { get; set; }
+        public int TrainingId { get; set; }
         /// <summary>
-        /// Gets or sets the CustomerName.
+        /// Gets or sets the TrainingName.
         /// </summary>
-        public string CustomerName { get; set; }
+        public string TrainingName { get; set; }
         /// <summary>
         /// Gets or sets the StartDate.
         /// </summary>

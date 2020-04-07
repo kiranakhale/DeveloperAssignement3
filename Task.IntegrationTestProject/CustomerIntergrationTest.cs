@@ -12,7 +12,7 @@ namespace Task.IntegrationTestProject
     {
         private WebApplicationFactory<Startup> _factory = null;
         HttpClient _client;
-        private const string Url_Path = @"/api/customer/create";
+        private const string Url_Path = @"/api/training/addtraining";
         public CustomerIntergrationTest(WebApplicationFactory<Startup> factory)
         {
             this._factory = factory;
@@ -28,11 +28,11 @@ namespace Task.IntegrationTestProject
             //Arrange
             var startDate = DateTime.Now;
             var endDate = DateTime.Now.AddDays(1);
-            CustomerModel model = new CustomerModel()
+            TrainingModel model = new TrainingModel()
             {
                 EndDate = endDate,
                 StartDate = startDate,
-                Name = "User_" + Guid.NewGuid().GetHashCode()
+                TrainingName = "User_" + Guid.NewGuid().GetHashCode()
             };
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);
@@ -47,7 +47,7 @@ namespace Task.IntegrationTestProject
         public async ThreadingTask.Task POST_Customer_BadRequest_When_Name_Is_Required()
         {
             //Arrange
-            CustomerModel model = new CustomerModel {EndDate=DateTime.Now, StartDate=DateTime.Now };
+            TrainingModel model = new TrainingModel {EndDate=DateTime.Now, StartDate=DateTime.Now };
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);
 
@@ -61,7 +61,7 @@ namespace Task.IntegrationTestProject
         public async ThreadingTask.Task POST_Customer_BadRequest_When_Request_Is_Null()
         {
             //Arrange
-            CustomerModel model = null;
+            TrainingModel model = null;
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);
 
@@ -77,11 +77,11 @@ namespace Task.IntegrationTestProject
             //Arrange
             var startDate = DateTime.Now;
             var endDate = DateTime.Now.AddDays(1);
-            CustomerModel model = new CustomerModel()
+            TrainingModel model = new TrainingModel()
             {
                 EndDate = endDate,
                 StartDate = startDate,
-                Name = "User_ToooooooooooooooooooooooooooooooooooooooooooooooLoooooooooooooooooooooooooooooooooooooooooong"
+                TrainingName = "User_ToooooooooooooooooooooooooooooooooooooooooooooooLoooooooooooooooooooooooooooooooooooooooooong"
             };
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);

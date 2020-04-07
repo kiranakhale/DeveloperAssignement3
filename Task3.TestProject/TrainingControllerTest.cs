@@ -16,14 +16,14 @@ namespace Task3.TestProject
     [TestClass]
     public class TrainingControllerTest
     {
-        private readonly CustomerController _trainingController;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly TrainingController _trainingController;
+        private readonly ITrainingRepository _customerRepository;
         private readonly IMapper _mapper;
         public TrainingControllerTest()
         {
-            _customerRepository = Substitute.For<ICustomerRepository>();
+            _customerRepository = Substitute.For<ITrainingRepository>();
             _mapper = new TaskMapper().Mapper;
-            _trainingController = new CustomerController(_customerRepository, _mapper);
+            _trainingController = new TrainingController(_customerRepository, _mapper);
         }
 
         [TestMethod]
@@ -32,9 +32,9 @@ namespace Task3.TestProject
             //Arrange
             var startDate = DateTime.Now;
             var endDate = DateTime.Now.AddDays(1);
-            _customerRepository.AddCustomer(Arg.Any<Customer>()).Returns(true);
+            _customerRepository.AddTraining(Arg.Any<TrainingEntity>()).Returns(true);
             //Act
-            var response = _trainingController.create(new CustomerModel() { EndDate = endDate, Name = "test", StartDate = startDate });
+            var response = _trainingController.AddTraining(new TrainingModel() { EndDate = endDate, TrainingName = "test", StartDate = startDate });
             var okResult = response as OkObjectResult;
             //Verify
             Assert.IsNotNull(okResult);
@@ -46,7 +46,7 @@ namespace Task3.TestProject
         [TestMethod]
         public void CreateReturnBadRequest()
         {
-            var response = _trainingController.create(null);
+            var response = _trainingController.AddTraining(null);
             var badResult = response as BadRequestObjectResult;
             //Verify
             Assert.IsNotNull(badResult);
@@ -56,8 +56,8 @@ namespace Task3.TestProject
         [TestMethod]
         public void CreateReturnBadRequestWhenRecordNotInsertedToDB()
         {
-            _customerRepository.AddCustomer(Arg.Any<Customer>()).Returns(false);
-            var response = _trainingController.create(new CustomerModel { EndDate = DateTime.Now, Name = "Name", StartDate = DateTime.Now });
+            _customerRepository.AddTraining(Arg.Any<TrainingEntity>()).Returns(false);
+            var response = _trainingController.AddTraining(new TrainingModel { EndDate = DateTime.Now, TrainingName = "Name", StartDate = DateTime.Now });
             var badResult = response as BadRequestObjectResult;
             //Verify
             Assert.IsNotNull(badResult);
@@ -67,7 +67,7 @@ namespace Task3.TestProject
         [TestMethod]
         public void CreateReturnBadRequestWhenNameIsNotValid()
         {
-            var response = _trainingController.create(new CustomerModel { EndDate = DateTime.Now, StartDate = DateTime.Now });
+            var response = _trainingController.AddTraining(new TrainingModel { EndDate = DateTime.Now, StartDate = DateTime.Now });
             var badResult = response as BadRequestObjectResult;
             //Verify
             Assert.IsNotNull(badResult);
@@ -77,8 +77,8 @@ namespace Task3.TestProject
         [TestMethod]
         public void CreateReturnInternalServerErrorWhenExceptionRaised()
         {
-            _customerRepository.AddCustomer(Arg.Any<Customer>()).Throws(new Exception());
-            var response = _trainingController.create(new CustomerModel { EndDate = DateTime.Now, StartDate = DateTime.Now });
+            _customerRepository.AddTraining(Arg.Any<TrainingEntity>()).Throws(new Exception());
+            var response = _trainingController.AddTraining(new TrainingModel { EndDate = DateTime.Now, StartDate = DateTime.Now });
 
             var result = response as StatusCodeResult;
             //Verify

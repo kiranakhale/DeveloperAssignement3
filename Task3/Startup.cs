@@ -28,7 +28,7 @@ namespace Task3
             services.AddDbContextPool<Task3DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Task3DbConection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton(new TaskMapper().Mapper);
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ITrainingRepository, TrainingRepository>();
             services.Configure<ApiBehaviorOptions>(x => { x.SuppressModelStateInvalidFilter = true; });
 
             // In production, the Angular files will be served from this directory

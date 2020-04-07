@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 namespace Task3.Common.Model
 {
     /// <summary>
-    /// Represents the CustomerModel DTO.
+    /// Represents the TrainingModel DTO.
     /// </summary>
-    public class CustomerModel
+    public class TrainingModel
     {
         /// <summary>
         /// Gets or sets the CustomerName.
         /// </summary>
         [Required]
-        public string Name { get; set; }
+        public string TrainingName { get; set; }
         /// <summary>
         /// Gets or sets the StartDate.
         /// </summary>

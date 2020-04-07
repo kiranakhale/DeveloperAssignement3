@@ -8,9 +8,8 @@ namespace Task3.Mapper
     {
         public ToEntityMapper()
         {
-            CreateMap<CustomerModel, Customer>()
-                .ForMember(x=>x.CustomerName,y=>y.MapFrom(src=>src.Name))
-                .ReverseMap();
+            CreateMap<TrainingModel, TrainingEntity>();
+                
         }
     }
 }
