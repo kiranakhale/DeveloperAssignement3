@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using System;
 using System.Net.Http;
-using Task3;
+using Task3.Api;
 using Task3.Common.Model;
 using Xunit;
 using ThreadingTask = System.Threading.Tasks;
 
 namespace Task.IntegrationTestProject
 {
-    public class CustomerIntergrationTest : IClassFixture<WebApplicationFactory<Startup>>
+    public class TrainingIntergrationTest : IClassFixture<WebApplicationFactory<Startup>>
     {
         private WebApplicationFactory<Startup> _factory = null;
         HttpClient _client;
         private const string Url_Path = @"/api/training/addtraining";
-        public CustomerIntergrationTest(WebApplicationFactory<Startup> factory)
+        public TrainingIntergrationTest(WebApplicationFactory<Startup> factory)
         {
             this._factory = factory;
             _client = this._factory.CreateClient(new WebApplicationFactoryClientOptions()
@@ -23,7 +23,7 @@ namespace Task.IntegrationTestProject
             _client.DefaultRequestHeaders.Add("ContentType", "application/json");
         }
         [Fact]
-        public async ThreadingTask.Task POST_Customer_Success()
+        public async ThreadingTask.Task POST_Training_Success()
         {        
             //Arrange
             var startDate = DateTime.Now;
@@ -32,7 +32,7 @@ namespace Task.IntegrationTestProject
             {
                 EndDate = endDate,
                 StartDate = startDate,
-                TrainingName = "User_" + Guid.NewGuid().GetHashCode()
+                TrainingName = "Training_" + Guid.NewGuid().GetHashCode()
             };
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);
@@ -44,7 +44,7 @@ namespace Task.IntegrationTestProject
         }
 
         [Fact]
-        public async ThreadingTask.Task POST_Customer_BadRequest_When_Name_Is_Required()
+        public async ThreadingTask.Task POST_Training_BadRequest_When_Name_Is_Required()
         {
             //Arrange
             TrainingModel model = new TrainingModel {EndDate=DateTime.Now, StartDate=DateTime.Now };
@@ -58,7 +58,7 @@ namespace Task.IntegrationTestProject
         }
 
         [Fact]
-        public async ThreadingTask.Task POST_Customer_BadRequest_When_Request_Is_Null()
+        public async ThreadingTask.Task POST_Training_BadRequest_When_Request_Is_Null()
         {
             //Arrange
             TrainingModel model = null;
@@ -72,7 +72,7 @@ namespace Task.IntegrationTestProject
         }
 
         [Fact]
-        public async ThreadingTask.Task POST_Customer_InternalServerError_When_Name_Is_Long()
+        public async ThreadingTask.Task POST_Training_InternalServerError_When_Name_Is_Long()
         {
             //Arrange
             var startDate = DateTime.Now;
@@ -81,7 +81,7 @@ namespace Task.IntegrationTestProject
             {
                 EndDate = endDate,
                 StartDate = startDate,
-                TrainingName = "User_ToooooooooooooooooooooooooooooooooooooooooooooooLoooooooooooooooooooooooooooooooooooooooooong"
+                TrainingName = "Training_ToooooooooooooooooooooooooooooooooooooooooooooooLoooooooooooooooooooooooooooooooooooooooooong"
             };
             //Act
             var response = await _client.PostAsJsonAsync(Url_Path, model).ConfigureAwait(false);

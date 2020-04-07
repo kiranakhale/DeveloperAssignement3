@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Task3.Common\Task3.Common.csproj" />
     <ProjectReference Include="..\Task3.Repositories.Entities\Task3.Repositories.Entities.csproj" />
   </ItemGroup>
 

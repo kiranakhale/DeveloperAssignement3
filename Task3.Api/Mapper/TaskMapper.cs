@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Task3.Mapper
+namespace Task3.Api.Mapper
 {
     public class TaskMapper
     {

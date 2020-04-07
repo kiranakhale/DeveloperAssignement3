@@ -9,7 +9,7 @@ namespace Task3.Common.Model
     public class TrainingModel
     {
         /// <summary>
-        /// Gets or sets the CustomerName.
+        /// Gets or sets the TrainingName.
         /// </summary>
         [Required]
         public string TrainingName { get; set; }
