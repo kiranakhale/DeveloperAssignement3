@@ -15,12 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestProject", "TestProject"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.IntegrationTestProject", "Task.IntegrationTestProject\Task.IntegrationTestProject.csproj", "{009D832C-6F4E-4175-8E58-F1FB61B6F87C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScript", "DBScript", "{1DBA8622-6B5D-4618-99BF-CDF5729CD85E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{1DBA8622-6B5D-4618-99BF-CDF5729CD85E}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\yogesh\Desktop\Task3Script.sql = C:\Users\yogesh\Desktop\Task3Script.sql
+		C:\Users\yogesh\Desktop\Task3Scripts.sql = C:\Users\yogesh\Desktop\Task3Scripts.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.Api", "Task3.Api\Task3.Api.csproj", "{D4162162-764E-43DC-83BE-8F238A783E4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task3.Api", "Task3.Api\Task3.Api.csproj", "{D4162162-764E-43DC-83BE-8F238A783E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

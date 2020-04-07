@@ -22,7 +22,11 @@ namespace Task3.Api.Controllers
             _trainingRepository = trainingRepository;
             _mapper = mapper;
         }
-
+        [HttpGet("[action]")]
+        public string landing()
+        {
+            return "Welcome to Training App.";
+        }
         /// <summary>
         /// Adds the training details.
         /// </summary>
